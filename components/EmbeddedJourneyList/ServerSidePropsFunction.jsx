@@ -1,5 +1,10 @@
+"use server"
 
 import axios from "axios";
+import CHEmbeddedListCards from './CHEmbeddedListCards';
+import Loader from './Toader';
+import EmbeddedListNavbar from './EmbeddedListNavbar';
+import CompanyPerformance from './CompanyPerformance';
 
 const getData = async ({searchParams}) => {
 
@@ -26,10 +31,23 @@ const ServerSidePropsFunction = async ({params, searchParams}) => {
 
   return (
     <div>
-      <h2>Login Page</h2>
+      {/* <h2>Login Page</h2> */}
       <div>
+        {/* {
+            JSON.stringify(response.data)
+        } */}
+
         {
-            JSON.stringify(response)
+          <Loader/>
+        }
+        <EmbeddedListNavbar/>
+        <div className='Performanceheader' style={{marginTop:'3px', marginBottom:'15px'}}>
+            <CompanyPerformance/>
+          </div>
+
+        {
+          
+            <CHEmbeddedListCards json1 = {response.data}/>
         }
       </div>
     </div>
