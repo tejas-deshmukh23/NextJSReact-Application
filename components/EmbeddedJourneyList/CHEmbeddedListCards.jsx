@@ -2,6 +2,7 @@
 
 import { Typography } from '@mui/material';
 import GetLoanButton from './GetLoanButton';
+// import GetLoanButton from './GetLoanButton';
 import './CHEmbeddedList.css';
 
 const CHEmbeddedListCards = ({ json1 }) => {
@@ -48,9 +49,10 @@ const CHEmbeddedListCards = ({ json1 }) => {
                   </Typography>
                 </div>
               </div>
-              <div>
+              <div className="action-button">
+                <GetLoanButton lender={lender} />
               </div>
-              <GetLoanButton lender={lender}/>
+
             </div>
           </div>
         ))}

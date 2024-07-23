@@ -6,6 +6,7 @@ import Loader from './Toader';
 import EmbeddedListNavbar from './EmbeddedListNavbar';
 import CompanyPerformance from './CompanyPerformance';
 
+
 const getData = async ({searchParams}) => {
 
     const formData1 = new FormData();

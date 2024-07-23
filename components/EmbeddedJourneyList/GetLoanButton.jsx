@@ -8,6 +8,8 @@ import LinkLoader from './LinkLoader';
 import ApplicationPopup from '../NewPersonalLoan/Other Components/ApplicationPopup';
 import ApplicationLoader from '../NewPersonalLoan/Other Components/ApplicationLoader';
 import OtpVerifyLoader from '../NewPersonalLoan/Other Components/OtpVerifyLoader';
+import ErrorPopup from './ErrorPopup';
+import Temporary from './temporary';
 
 const GetLoanButton = ({ lender }) => {
 
@@ -17,7 +19,7 @@ const GetLoanButton = ({ lender }) => {
     const [lender_id, setLender_id] = useState('');
     const [lenderName, setlenderName] = useState("NA");
     const [productsArr, setProductsArr] = useState([]);
-    const [isOtpVerified, setIsOtpVerified] = useState(false);
+    const [otpVerifiedState, setOtpVerifiedState] = useState(null);
     const [isVisible, setIsVisible] = useState(false);//This is for toggle OTP div
 
     const searchParams = useSearchParams();
@@ -30,20 +32,59 @@ const GetLoanButton = ({ lender }) => {
     const [upotp, setUpOtp] = useState('');
     const [otpStatus, setOtpStatus] = useState('');
     const [otpVerifyLoader, setOtpVerifyLoader] = useState(false);
+    const [otpVerifyLoader2, setOtpVerifyLoader2] = useState(true);
 
     const [redirectionLinkLoader, setRedirectionLinkLoader] = useState(false);
     const [apiExecutionLoader, setApiExecutionLoader] = useState(false);
-    const [isCameFromBackend, setIsCameFromBackend] = useState();
+    const [isCameFromBackend, setIsCameFromBackend] = useState(false);
 
     const [link, setLink] = useState("https://www.google.com");
+    const [errorPopup, setErrorPopup] = useState(false);
+    const [errorPopup2, setErrorPopup2] = useState(false);
+    const [checkVerifyFlag, setCheckVerifyFlag] = useState(false);
+
+    const [isOtpVerified, setIsOtpVerified] = useState(false);
 
     useEffect(() => { //This will be called when the user clicks on the getLoan button 
         if (lenderProduct !== '') {
             handleOTPComponent();
-            console.log("Inside Usestate of lender product ", productsArr);
+            console.log("Inside Usestate of lender product productsArr ", productsArr);
+            console.log("Inside Usestate of lender product lenderProduct ",lenderProduct);
+            console.log("Inside Usestate of lender product lenderCpi ",lenderCpi);
+            console.log("Inside Usestate of lender product lenderApplicationLink ",lenderApplicationLink);
+            console.log("Inside Usestate of lender product lender_id ",lender_id);
 
         }
     }, [lenderProduct, productsArr, lenderCpi, lenderApplicationLink, lender_id])
+
+    
+
+    useEffect(()=>{
+        if(checkVerifyFlag)
+        {
+            console.log("check verify flag is ==============================================> true");
+        }else{
+            console.log("check verify flag is ==============================================> false");
+        }
+    },[checkVerifyFlag]);
+
+    useEffect(()=>{
+        if(isOtpVerified)
+            {
+                console.log("isOTP verify flag is ==============================================> true",isOtpVerified);
+            }else{
+                console.log("isOTP verify flag is ==============================================> false",isOtpVerified);
+            }
+    },[isOtpVerified])
+
+    useEffect(() => {
+        // getLendersList();
+
+        if (SSO === 'yes') {
+            setIsOtpVerified(true);
+        }
+
+    }, []);
 
     const handleOTPComponent = () => {
         OTPGenerate();
@@ -55,7 +96,7 @@ const GetLoanButton = ({ lender }) => {
     const OTPGenerate = async () => {
         // e.preventDefault();
 
-        if (isOtpVerified === false) {
+        if (!isOtpVerified) {
             try {
                 setIsVisible(true);
                 const queryParams = new URLSearchParams(location.search);
@@ -101,7 +142,7 @@ const GetLoanButton = ({ lender }) => {
 
                 }
 
-                console.log(response);
+                console.log("tejas", response);
 
                 if (response.status === 200) {
                     console.log('Submission successful:', response.data);
@@ -112,6 +153,7 @@ const GetLoanButton = ({ lender }) => {
                 console.error('Error submitting form:', error);
             }
         } else {
+            console.log("Inside else");
             getLoanBackend(lenderProduct);
         }
 
@@ -121,7 +163,7 @@ const GetLoanButton = ({ lender }) => {
 
         // If lenderCpi is 1, redirect to lender.applicationlink
 
-        console.log(lenderCpi);
+        console.log("lender Cpi is : ", lenderCpi);
 
         if (lenderCpi === 1) {
             setRedirectionLinkLoader(true);
@@ -142,11 +184,11 @@ const GetLoanButton = ({ lender }) => {
 
             try {
                 const formData1 = new FormData();
-                console.log("Mobile Number before is : ",mobileNumber);
+                console.log("Mobile Number before is : ", mobileNumber);
                 formData1.append('mobilenumber', mobileNumber);
-                console.log("mobileNumber after is : ",mobileNumber);
+                console.log("mobileNumber after is : ", mobileNumber);
                 formData1.append('product', productname);
-                console.log("product name after is : ",productname);
+                console.log("product name after is : ", productname);
 
                 setlenderName(productname);
 
@@ -161,11 +203,12 @@ const GetLoanButton = ({ lender }) => {
 
                 console.log("After the apiExecution");
 
-                
+
 
                 if (response.data.code === 0) {
                     console.log("Inside get Loan Backend when code is 0");
                     setIsCameFromBackend(true);
+
                     const timer = setTimeout(() => {
                         setApiExecutionLoader(false);
                     }, 3000);
@@ -199,7 +242,7 @@ const GetLoanButton = ({ lender }) => {
 
     const toggleVisibility = () => {
         setIsVisible(!isVisible);
-      };
+    };
 
     const verifyOTP = async (e) => {
         // e.preventDefault();
@@ -218,27 +261,17 @@ const GetLoanButton = ({ lender }) => {
             const response = await axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}verifyOTPNewPersonalloan`, formData1);
 
             if (response.data.code === 0) {
-                console.log("Inside when data.code is 0")
-                setOtpStatus('');
-
+                console.log("Inside when data.code is 0");
+                // setIsOtpVerified(true);
+                setCheckVerifyFlag(true);
                 setIsOtpVerified(true);
-
+                console.log("The check Verify flag is : ",checkVerifyFlag);
+                setOtpStatus('');
                 getLoanBackend(lenderProduct);
-
                 setIsVisible(false);
-
                 const timer = setTimeout(() => {
                     setOtpVerifyLoader(false);
                 }, 1000);
-
-
-                // setDobFlag(false);
-                // setResidentialPincodeFlag(false);
-                // setTimeout(() => {
-                //   setOtpLoader(false);
-                //   setShowOTPVerification(false);
-                //   setShowAddInfo(true);
-                // }, 3000);
 
 
             } else {
@@ -264,34 +297,32 @@ const GetLoanButton = ({ lender }) => {
 
     return (
         <>
-        <div className="action-button">
-            {/* <Link to={`/NewPersonalLoan/${lender.product}`} className="getLoanButtonLink"> */}
-            {/* <button onClick={(e) => getLoanBackend(e, lender.product)} */}
-            {/* <button onClick={(e) => handleOTPComponent(e,lender.product)} */}
+            <div className="action-button">
 
-            <button size="small"
-                onClick={(e) => {
-                    setLenderProduct(lender.product);
-                    setProductsArr((prevProductsArr) => [...prevProductsArr, lender.product]);
-                    setLenderCpi(lender.cpi);
-                    setLenderApplicationLink(lender.applicationlink);
-                    setLender_id(lender.product_id);
-                }}
-                variant="contained"
-                className="getLoanButton">
+                <button size="small"
+                    onClick={(e) => {
+                        setLenderProduct(lender.product);
+                        setProductsArr((prevProductsArr) => [...prevProductsArr, lender.product]);
+                        setLenderCpi(lender.cpi);
+                        setLenderApplicationLink(lender.applicationlink);
+                        setLender_id(lender.product_id);
+                    }}
+                    variant="contained"
+                    className="getLoanButton">
 
-                Get Loan
-            </button>
-            {/* </Link> */}
-        </div>
+                    Get Loan
+                </button>
+                {/* </Link> */}
+            </div>
 
-{isVisible && <OTPBottomSheet isVisible={isVisible} verifyOTP={verifyOTP} upotp={upotp} otpStatus={otpStatus} setUpOtp={setUpOtp} />}
-{redirectionLinkLoader && <LinkLoader lendername={lenderProduct}/>}
-{otpVerifyLoader && <OtpVerifyLoader />}
-{!otpVerifyLoader && apiExecutionLoader && <ApplicationLoader />}
-{isCameFromBackend && <ApplicationPopup link={link} lenderName={lenderName} />}
+            {isVisible && <OTPBottomSheet isVisible={isVisible} verifyOTP={verifyOTP} upotp={upotp} otpStatus={otpStatus} setUpOtp={setUpOtp} />}
+            {redirectionLinkLoader && <LinkLoader lendername={lenderProduct} />}
+            {otpVerifyLoader && <OtpVerifyLoader />}
+            {!apiExecutionLoader && errorPopup && <ErrorPopup setErrorPopup={setErrorPopup} setErrorPopup2={setErrorPopup2} lenderName={lenderProduct} lender_id={lender_id} setLender_id={setLender_id} />}
+            {!otpVerifyLoader && apiExecutionLoader && <ApplicationLoader />}
+            {isCameFromBackend && <ApplicationPopup link={link} lenderName={lenderName} />}
 
-</>
+        </>
     )
 }
 

@@ -17,6 +17,7 @@
     "react": "^18",
     "react-datepicker": "^7.3.0",
     "react-dom": "^18",
+    "sharp": "^0.33.4",
     "tw-elements": "^2.0.0",
     "zustand": "^4.5.4"
   },

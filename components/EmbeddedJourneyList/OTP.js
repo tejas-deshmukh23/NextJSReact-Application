@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState, useEffect } from 'react';
 
 function OTPVerification({ verifyOTP, upotp, otpStatus, setUpOtp }) {
@@ -31,6 +33,9 @@ function OTPVerification({ verifyOTP, upotp, otpStatus, setUpOtp }) {
       // console.log(upotp);
 
       setTempOtp(newOtp.join(""));
+      // if(index<=5){
+        setUpOtp(newOtp.join(""));
+      // }
 
     }
   };
@@ -95,7 +100,7 @@ function OTPVerification({ verifyOTP, upotp, otpStatus, setUpOtp }) {
         </div>
 
 
-        {setUpOtp(otp.join(''))}
+        {/* {setUpOtp(otp.join(''))} */}
         <p style={{ color: 'red', textAlign: 'center' }}>{otpStatus}</p>
 
         <div className="input-group mb-2 mt-5 text-center">
