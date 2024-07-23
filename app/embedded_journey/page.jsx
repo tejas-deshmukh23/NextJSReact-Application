@@ -1,10 +1,12 @@
-import BaseComponent from '../../components/EmbeddedJourneyList/BaseComponent'
+// import BaseComponent from '../../components/EmbeddedJourneyList/BaseComponent'
 import React from 'react'
+import ServerSidePropsFunction from '../../components/EmbeddedJourneyList/ServerSidePropsFunction';
 
-const page = () => {
+const page = ({ params, searchParams }) => {
   return (
     <div>
-      <BaseComponent/>
+      {/* <BaseComponent/> */}
+      <ServerSidePropsFunction params={params} searchParams={searchParams}  />
     </div>
   )
 }
