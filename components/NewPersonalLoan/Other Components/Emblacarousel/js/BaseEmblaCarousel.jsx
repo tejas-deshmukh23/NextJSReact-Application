@@ -5,9 +5,7 @@ import ReactDOM from 'react-dom/client'
 import EmblaCarousel from './EmblaCarousel'
 import Header from './Header'
 import Footer from './Footer'
-import '../css/base.css'
-import '../css/sandbox.css'
-import '../css/embla.css'
+
 
 // import NewFormPageImage from '../NewPersonalLoanImages/NewFormPageImage.png';
 import NewFormPageImage from '../../../NewPersonalLoanImages/NewFormPageImage.png'

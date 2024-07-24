@@ -17,6 +17,7 @@ const FirstPage = dynamic (
 
 const page = () => {
   return (
+    <>
     <BrowserRouter>
     <UserProvider>
     <div>
@@ -25,6 +26,8 @@ const page = () => {
     </div>
     </UserProvider>
     </BrowserRouter>
+    
+    </>
   )
 }
 
