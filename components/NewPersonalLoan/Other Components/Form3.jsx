@@ -28,8 +28,8 @@ const Form3 = () => {
                             <Image
                                 src={NewFormPageImage}
                                 className="img-fluid"
-                                width={300}
-                                height={150}
+                                width={500}
+                                height={500}
                                 layout='intrensic'
                                 alt='Banner Image'
                                 style={{marginBottom:"20px"}}

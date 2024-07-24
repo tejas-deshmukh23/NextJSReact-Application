@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mui/joy": "^5.0.0-beta.48",
+    "@mui/material": "^5.16.4",
     "bootstrap": "^5.3.3",
     "jquery": "^3.7.1",
     "jquery-ui": "^1.13.3",
@@ -17,6 +19,8 @@
     "react": "^18",
     "react-datepicker": "^7.3.0",
     "react-dom": "^18",
+    "react-multi-carousel": "^2.8.5",
+    "react-router-dom": "^6.25.1",
     "sharp": "^0.33.4",
     "tw-elements": "^2.0.0",
     "zustand": "^4.5.4"
