@@ -4,7 +4,7 @@ import React from 'react'
 // import FirstPage from '../../components/CreditCard/FirstPage'
 // import { UserProvider } from '../../contexts/UserContext';npm
 import { UserProvider } from '../../context/ContextFile'
-import { BrowserRouter } from 'react-router-dom';
+// import { BrowserRouter } from 'react-router-dom';
 import dynamic from "next/dynamic";
 
 const FirstPage = dynamic (
@@ -18,14 +18,14 @@ const FirstPage = dynamic (
 const page = () => {
   return (
     <>
-    <BrowserRouter>
+    {/* <BrowserRouter> */}
     <UserProvider>
     <div>
         
       <FirstPage/>
     </div>
     </UserProvider>
-    </BrowserRouter>
+    {/* </BrowserRouter> */}
     
     </>
   )

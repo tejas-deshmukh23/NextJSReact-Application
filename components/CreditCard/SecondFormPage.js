@@ -7,7 +7,7 @@ import Animation from './Animation';
 import { Box, Button,FormControl,Grid,InputLabel,MenuItem,Select,TextField, Typography } from '@mui/material';
 import FormFooter from './FormFooter';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import './Root.css';
 import './Basicform.css';
 import { UserContext } from '../../context/ContextFile';
@@ -22,7 +22,7 @@ const SecondFormPage = () => {
   const [employee, setEmployee] = useState('');
   const [companyName, setCompanyName] = useState('');
   const { user, updateUser } = useContext(UserContext);
-  const navigate=useNavigate();
+  // const navigate=useNavigate();
   const [errorMessages, setErrorMessages] = useState({});
 
   const router = useRouter();
@@ -90,10 +90,8 @@ const SecondFormPage = () => {
      // Send the OTP verification request to the backend
      const response1 = await axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}creditcardsecond`, formData);
       sessionStorage.setItem('userData', JSON.stringify(response1.data.obj));
-      console.log("Before navigate");
       // navigate('/dialogb');
       router.push('/dialogb');
-      console.log("After naviagate");
       // Handle the response from the backend
      
     } catch (error) {

@@ -17,7 +17,8 @@ import FormFooter from './FormFooter';
 import './Basicform.css';
 import axios from 'axios';
 import { UserContext } from '../../context/ContextFile';
-import {  useLocation} from 'react-router-dom';
+// import {  useLocation} from 'react-router-dom';
+import { useSearchParams } from 'next/navigation';
 // import {userRouter} from 'next/navigation';
 import Carousel from 'react-multi-carousel';
 import { Card, CardContent} from '@mui/joy';
@@ -52,7 +53,7 @@ const FirstPage = () => {
   const [upotp,setUpotp]=useState('');
   const { updateUser } = useContext(UserContext);
   // const navigate=useNavigate();
-  const location=useLocation();
+  // const location=useLocation();
   const router = useRouter();
 
 

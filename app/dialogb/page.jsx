@@ -3,7 +3,7 @@
 import React from 'react'
 // import Dialogb from '../../components/CreditCard/Dialogbox';
 import { UserProvider } from '../../context/ContextFile'
-import { BrowserRouter } from 'react-router-dom';
+// import { BrowserRouter } from 'react-router-dom';
 
 import dynamic from "next/dynamic";
 
@@ -16,13 +16,13 @@ const Dialogb = dynamic (
 
 const page = () => {
   return (
-    <BrowserRouter>
+    // <BrowserRouter>
     <UserProvider>
     <div>
       <Dialogb/>
     </div>
     </UserProvider>
-    </BrowserRouter>
+    // </BrowserRouter>
   )
 }
 

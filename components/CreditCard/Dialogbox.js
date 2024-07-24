@@ -6,7 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import './FileAnimation.css';
 import { Button } from '@mui/material';
 import image1 from '../../images/creditcardgif.gif';
@@ -23,7 +23,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const Dialogbox = () => {
     const [open,setOpen] = React.useState(true);
     
-    const navigate=useNavigate();
+    // const navigate=useNavigate();
     const router = useRouter();
     // Include 'navigate' in the dependency array
      
