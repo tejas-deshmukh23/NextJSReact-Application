@@ -1,3 +1,5 @@
+"use cilent"
+
 import React, { useEffect } from 'react'
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';

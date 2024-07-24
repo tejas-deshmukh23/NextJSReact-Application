@@ -2,7 +2,7 @@
 
 import card_img from '../../images/hdfc-card.jpg';
 import {Button, Typography } from '@mui/material'; 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import logo from '../../images/hdfc-logo..png'
 
@@ -10,8 +10,23 @@ import logo from '../../images/hdfc-logo..png'
 
 const ListPage = () => {
 
-  const storedUserData = sessionStorage.getItem('sucessData');
-  const mydata = JSON.parse(storedUserData);
+  const [storedUserData, setStoredUserData] = useState(sessionStorage.getItem('sucessData'));
+
+//   if (typeof window !== 'undefined') {
+//     // Code that accesses sessionStorage
+//     console.log("Inside");
+//     setStoredUserData(sessionStorage.getItem('sucessData'));
+//     // const mydata = JSON.parse(storedUserData);
+//     // Rest of your code
+// }else{
+//   // const storedUserData = null;
+  
+// }
+
+const mydata = JSON.parse(storedUserData);
+
+  // const storedUserData = sessionStorage.getItem('sucessData');
+  
 
   useEffect(() => {
     // Generate confetti CSS dynamically

@@ -1,5 +1,3 @@
-
-
 import './Form.css'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -9,6 +7,12 @@ import FormInputs from './FormInputs';
 import Consent from './Consent';
 import FormSubmitBtn from './FormSubmitBtn';
 import FormComponentsWrapper from './FormComponentsWrapper';
+// import EmblaCarousel from './Emblacarousel/js/EmblaCarousel';
+import EmblaCarousel from './Emblacarousel/js/BaseEmblaCarousel';
+
+
+
+// import FormPageCarousel from './FormPageCarousel';
 
 
 const Form3 = () => {
@@ -25,7 +29,7 @@ const Form3 = () => {
 
                             {/* ------------------------Carousel Component------------------------------------------------ */}
 
-                            <Image
+                            {/* <Image
                                 src={NewFormPageImage}
                                 className="img-fluid"
                                 width={500}
@@ -33,7 +37,9 @@ const Form3 = () => {
                                 layout='intrensic'
                                 alt='Banner Image'
                                 style={{marginBottom:"20px"}}
-                            />
+                            /> */}
+                            {/* <FormPageCarousel /> */}
+                            <EmblaCarousel/>
                             {/*----------------- Carousel Component Ends Here---------------------------------------- */}
 
                         </div>
