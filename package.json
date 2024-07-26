@@ -11,6 +11,7 @@
   "dependencies": {
     "@mui/joy": "^5.0.0-beta.48",
     "@mui/material": "^5.16.4",
+    "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
     "carousel": "^0.0.3",
     "embla": "^1.0.0",

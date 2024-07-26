@@ -1,6 +1,6 @@
 
 const Footer = () => {
-  return (
+  return (<>
     <footer class="footer" style={{backgroundColor:"#F2EDFF80",marginTop:"50px",paddingTop:"30px",paddingBottom:"30px"}}>
     <section class="container">
       <div class="row" style={{flexDirection:'row'}}>
@@ -82,6 +82,19 @@ const Footer = () => {
       </div>
     </div>
   </footer>
+
+  <style>
+    {
+      `
+        a{
+          text-decoration: none;
+          color:inherit;
+        }
+      `
+    }
+  </style>
+
+  </>
 
   )
 }
