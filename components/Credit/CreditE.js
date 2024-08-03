@@ -17,11 +17,11 @@ const CreditE = () => {
           </div>
 
            <ol class="eligibility-list">
-            <li class="eligibility-list_item">Age - 25 to 60 years</li>
+            <li class="eligibility-list_item">Age - 25 to 60 years</li>                            
             <li class="eligibility-list_item">
               Minimum monthly income - 
               <ul>
-                <li>Salaried- ₹18,000</li>
+                <li>Salaried- ₹18,000</li>     
                 <li>Self-employed-₹30,000</li>
               </ul>
             </li>
@@ -33,7 +33,7 @@ const CreditE = () => {
         </div>
         <div class="col-md-6">
           <div class="createaccount-home_con">
-          Avail a credit card in hassle free manner          </div>
+          Avail a credit card in hassle free manner</div>
           <div class="createaccount-home_item">
             <p>
             Receive amazing benefits on your credit card
